@@ -1,0 +1,71 @@
+# 案例与原始来源
+
+用途：在需要解释原则或比较设计机制时读取相应条目。无需每次任务重新浏览全部来源。历史机制用于类比；当前产品状态、版本参数和性能需重新核实。官方自述也不等于独立验证。
+
+## 理论来源
+
+- **NASA 系统工程**：目标、边界、技术与生命周期取舍，支持 P01、P14。[Fundamentals of Systems Engineering](https://www.nasa.gov/reference/2-0-fundamentals-of-systems-engineering/)
+- **NASA 设计过程**：要求一致、必要、可行和可验证，并区分符合规格与满足任务，支持 P02、P07、P13。[System Design Processes](https://www.nasa.gov/reference/4-0-system-design-processes/)
+- **Simon，1962**：近可分解系统允许在合适条件下分层理解和分析，支持 P04、P06；不是所有系统都具有这一性质。[The Architecture of Complexity](https://www.andrew.cmu.edu/course/15-440/assets/READINGS/simon-architecture-of-complexity-1962.pdf)
+- **Parnas，1972**：通过信息隐藏隔离设计决策，支持 P04、P05、P11；不是仅按执行步骤划分模块。[On the Criteria To Be Used in Decomposing Systems into Modules](https://www.cs.lafayette.edu/~gexia/cs301/resources/parnas.html)
+- **Suh 公理化设计**：功能要求独立；在满足独立性的方案中比较满足要求的成功概率，支持 P04、P09。其“信息量”与成功概率有关，不能误解成代码行数或文档字数。[MIT 原始教材](https://web.mit.edu/2.882/www/chapter1/chapter1.htm)
+- **Saltzer 与 Schroeder，1975**：机制经济性、最小权限、默认拒绝等保护原则，支持 P03、P10。[Basic Principles of Information Protection](https://web.mit.edu/Saltzer/www/publications/protection/Basic.html)
+
+## 猛禽发动机：在整机边界内理解集成化
+
+来源：SpaceX 关于 Raptor 3 的更新说明将传感器、控制器内部集成并配合热防护，与取消单独发动机防护罩联系起来。[SpaceX Updates](https://new.spacex.com/updates)
+
+可迁移的机制：集成可能同时减少外部连接、防护和装配负担。评价 P03、P04、P13、P14 时，需要把外围结构纳入成本边界。
+
+不可直接推导：外观更简洁意味着更易维修、更低全寿命成本或更高长期可靠性。还需要制造、检查、更换和使用数据；不能凭厂商性能目标证明已经达成。
+
+## Linux：稳定外部承诺，允许内部演进
+
+来源：官方文档区分稳定的内核到用户空间接口与允许改变的内核内部接口，并说明协调修改内部消费者的做法。[The Linux Kernel Driver Interface](https://cdn.kernel.org/doc/html/latest/process/stable-api-nonsense.html)
+
+可迁移的机制：把兼容成本放在有真实消费者依赖的边界，支持 P05、P11、P13。
+
+适用条件：能够协调内部消费者。对无法同步升级的第三方接口、独立部署服务或已售硬件，不能照搬内部接口自由变化的做法。
+
+## 互联网：共同接口与端到端责任
+
+来源：IP 提供跨异构网络的共同层；某些功能只有端点掌握足够信息才能完整实现。[RFC 1958](https://www.rfc-editor.org/rfc/rfc1958.html)
+
+可迁移的机制：少量共同规则容纳不同实现，职责放在有足够信息的地方，支持 P04、P05、P12。
+
+边界：不要推导出所有功能都必须移到边缘。历史上的宽容接收原则也不能机械套用；长期接受错误和歧义可能损害互操作性，应主动维护协议。[RFC 9413](https://datatracker.ietf.org/doc/html/rfc9413)
+
+## SQLite：明确能力上限，验证异常路径
+
+来源：官方适用范围说明单个数据库文件同一时刻的写入限制；测试包含内存不足、I/O 错误、崩溃模拟及复合失败。[适用场景](https://www.sqlite.org/whentouse.html)、[测试方法](https://www.sqlite.org/testing.html)
+
+可迁移的机制：P01、P07、P09、P12。优秀系统可有明确边界；关键承诺需要失败条件下的证据。
+
+边界：不能由“嵌入式”推断容量不足，也不能由测试数量推断绝对正确。判断需结合目标负载、访问模式与具体版本。
+
+## 航天飞机飞控：按故障模型设计冗余
+
+来源：多台主计算机之外，备用飞控软件采用独立开发，以降低共同软件缺陷的风险。[NASA：计算机与备用飞控](https://www.nasa.gov/history/sts1/pages/computer.html)
+
+可迁移的机制：P03、P09。检查副本间共享的软件、供电、环境与切换机制；相同副本主要解决一部分失败方式。
+
+边界：独立开发不能保证统计独立，也不能据飞控子系统推断整机安全。冗余数量应由具体任务和失效分析决定。
+
+## 丰田生产系统：异常可见、可以停线、按需求生产
+
+来源：自働化允许发现异常后停机或停线；准时化根据下游需求协调生产，仍保留必要的最小库存。[Toyota Production System](https://global.toyota/en/company/vision-and-philosophy/production-system/)
+
+可迁移的机制：P08、P14、P15。局部停止能防止缺陷扩散，局部忙碌不代表整体有效产出。
+
+边界：不要把精益解释成零库存、零余量或任何异常都停掉整个系统。缓冲与停止范围由波动、损失和恢复成本决定。
+
+## 校准用例
+
+用于自查应用方式，不要求每次运行，也不是已完成的行为测试记录。
+
+- **小型离线工具**：用户担忧未来扩容，当前没有规模变化证据。先检查实际目标与容量，不为了“可扩展”引入分布式架构。
+- **只读设计评审**：有设计图但没有实现和运行数据。可以发现图中的职责或接口矛盾；不能声称测出延迟、证明可靠性或修改代码。
+- **重复订单改进**：已授权修复超时重试导致的重复订单。验证请求身份、重试与持久化路径，实施相关最小修正并检查故障场景，不重做无关业务架构。
+- **备用设备去重**：用户认为主备设备重复。查明故障模型及共享依赖后评价保留或删除，不能仅凭 P03 得出删除结论。
+- **未知性能要求**：用户要求“更快”，没有负载和基线。先明确可观测场景与低成本测量；不承诺任意百分比提升。
+- **局部模块已合理**：证据未显示实质问题。允许交付“在本次范围内未发现需要修改的问题”，说明未覆盖内容，不强行建议重构。

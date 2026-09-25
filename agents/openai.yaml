@@ -1,0 +1,4 @@
+interface:
+  display_name: "系统设计原则"
+  short_description: "以目标、约束和证据支持系统设计、质量评审及最小必要改进"
+  default_prompt: "使用 $system-design-principles，基于当前系统的目标、约束和证据，完成设计、评审或改进，说明关键取舍及验证方式。"
