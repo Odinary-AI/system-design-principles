@@ -1,6 +1,8 @@
 ---
 name: system-design-principles
 description: Design, review, and improve engineered systems by evaluating goals, boundaries, interfaces, failure behavior, lifecycle costs, and architectural tradeoffs. Use for 系统设计、系统设计评审、架构质量评审、系统改进方案, including software, hardware, and operational systems. Review is read-only unless changes are requested. Do not use for routine coding, ordinary debugging, UI-only reviews, or unresolved ownership and governance as the primary task.
+metadata:
+  version: "0.1.0"
 ---
 
 # 系统设计原则
