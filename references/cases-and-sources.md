@@ -11,6 +11,22 @@
 - **Suh 公理化设计**：功能要求独立；在满足独立性的方案中比较满足要求的成功概率，支持 P04、P09。其“信息量”与成功概率有关，不能误解成代码行数或文档字数。[MIT 原始教材](https://web.mit.edu/2.882/www/chapter1/chapter1.htm)
 - **Saltzer 与 Schroeder，1975**：机制经济性、最小权限、默认拒绝等保护原则，支持 P03、P10。[Basic Principles of Information Protection](https://web.mit.edu/Saltzer/www/publications/protection/Basic.html)
 
+## 通用原则与方法的补充来源
+
+2026-10-10 对照补充。以下注明实际查阅范围；条目是本项目的综合适配，不将作者主张升级为普适定理，不复制整套教材或专业认证流程。既有同类 skill 调研保留其历史范围，本轮基于跨领域原始资料补充 P16 和方法参考。方法名称见 [设计分析方法](design-methods.md)。
+
+- **INCOSE，2022，Systems Engineering Principles**：读取原则正文和解释；第5、6、9项支持模型局限、逐步理解与不确定性决策，第2项支持整体及环境交互。对应 P07、P16 和方案取舍方法；其编号与本项目 P01–P16 不同，该原则集自身允许继续演进。[原文，第2、5、6、9项及解释](https://www.incose.org/wp-content/uploads/2026/01/systems_engineering_principles_book_v12_watson.pdf)
+- **NASA，Systems Engineering Handbook，第二版**：读取第2、4、6章相关网页正文。第2章支持系统包括人员、流程与设施及整体相互作用（P01、P16）；第4章支持需要—功能—实现的递归推导；第6章的6.2、6.5、6.8节分别支持需求追踪与余量、配置与证据对象、按决策影响选择分析强度（P07、P12、P15及相应方法）。提炼工程机制，不迁移 NASA 的审批、文档或项目阶段要求。[第2章](https://www.nasa.gov/reference/2-0-fundamentals-of-systems-engineering/)、[第4章](https://www.nasa.gov/reference/4-0-system-design-processes/)、[第6章](https://www.nasa.gov/reference/6-0-crosscutting-technical-management/)
+- **Donella Meadows，Leverage Points: Places to Intervene in a System，1999**：读取作者原文，重点为缓冲、存量与流量、延迟、调节与放大反馈；支持 P16 和状态、流与反馈分析。采用解释动态行为的机制，不把干预点排序当作所有工程系统的固定优先级。[作者原文](https://donellameadows.org/archives/leverage-points-places-to-intervene-in-a-system/)
+- **ISO 6385:2016，Ergonomics principles in the design of work systems**：读取官方摘要，支持将人员、设备、环境与工作组织共同考虑（P06、P08、P13）。未读取标准全文，不声称本项目覆盖其条款或符合标准。[官方摘要](https://www.iso.org/standard/63785.html)
+- **Nancy Leveson，Engineering a Safer World，2012**：读取出版社书籍说明及2012-02-23作者访谈，未通读全书；作者说明正常部件之间的不安全交互也可能导致事故，支持 P09、P10、P16。只迁移这一判断边界，不据出版社或作者自述宣称方法效果优于所有其他方法。[书籍说明](https://mitpress.mit.edu/9780262016629/engineering-a-safer-world/)、[作者访谈](https://news.mit.edu/2012/qa-with-nancy-leveson)
+- **Nancy Leveson 与 John Thomas，STPA Handbook，2018，第1–2章相关部分**：读取介绍和不安全控制动作分类；用于故障与危险分析的方法选择，检查动作提供/缺失、时机/顺序及持续时间与危险的关系。方法参考只给局部分析入口，不等同于完成正式 STPA，不替代领域安全证据。[作者手册](https://psas.scripts.mit.edu/home/get_file.php?name=STPA_handbook.pdf)
+- **Kossiakoff、Seymour、Flanigan 与 Biemer，Systems Engineering Principles and Practice，第3版，2020，第6章**：读取出版社的需求分析章摘要，强调将客户需要转换为可供方案响应的性能要求；辅助需求—功能—实现映射。未读取章节全文，不据摘要扩展具体方法或效果结论。[章节摘要](https://onlinelibrary.wiley.com/doi/10.1002/9781119516699.ch6)
+- **Saltzer、Reed 与 Clark，End-to-End Arguments in System Design，1984**：读取作者存档原文，支持按完整承诺所需信息配置责任（P05、需求与证据追踪）。仅在承诺需要端点掌握的信息时应用，不推出所有功能都应移到端点。[作者存档](https://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf)
+- **W. Ross Ashby，An Introduction to Cybernetics，1956，第11章11/5–11/9节**：读取必要多样性定律的定义、条件和扩展，启发 P08 对干预能力的检查。形式结论依赖其扰动、调节与结果模型；不据此要求所有控制器增加复杂度。[作者家族档案中的书籍](https://ashby.info/Ashby-Introduction-to-Cybernetics.pdf)
+
+已有 Parnas 原文支持按设计决策与变化划分模块；已有 Suh 教材支持区分功能要求、设计参数和物理零件，沿用上方来源。需要用其特定设计理论作判断时注明适用条件，不把功能独立性当作一切系统必须完全解耦的要求。
+
 ## 猛禽发动机：在整机边界内理解集成化
 
 来源：SpaceX 关于 Raptor 3 的更新说明将传感器、控制器内部集成并配合热防护，与取消单独发动机防护罩联系起来。[SpaceX Updates](https://new.spacex.com/updates)
@@ -84,3 +100,14 @@
 - **备用设备去重**：用户认为主备设备重复。查明故障模型及共享依赖后评价保留或删除，不能仅凭 P03 得出删除结论。
 - **未知性能要求**：用户要求“更快”，没有负载和基线。先明确可观测场景与低成本测量；不承诺任意百分比提升。
 - **局部模块已合理**：证据未显示实质问题。允许交付“在本次范围内未发现需要修改的问题”，说明未覆盖内容，不强行建议重构。
+
+### 整体行为与方法选择的校准用例
+
+以下为构造场景及判断标准，不是真实事故、实测数据或已完成的独立代理测试。数字只用于表达场景约束。
+
+- **延迟反馈**：温控器每5秒根据测温提高加热功率，但测温反映约20秒前的状态，观察到温度反复过冲。检查 P16 的延迟、反馈与热积累，同时核对传感器误差、执行器及控制规则；可提出区分根因的小检查，不能仅凭延迟指定新周期或增益，也不能用“加强复盘”代替运行分析。
+- **组合预算与互斥状态**：供电可持续提供60 W，两个负载各需40 W。若要求同时持续工作且无其他能源支持，整体需求80 W超出限制；若有已验证的互斥控制、切换瞬态也符合限制，不能仅凭两者相加判错。按实际运行状态检查 P05、P12，不擅自规定统一余量。
+- **人工接管时限**：系统要求告警后2秒完成动作，现有观察显示操作员仅辨认告警就需6秒，且没有自动保护。接管安排不能满足既定时限；检查信息、工作负荷、控制权限及可行保护，培训或“有人值守”不能单独证明问题已解决。
+- **稳态模型与启动声明**：只有额定运行的稳态模型通过校核，却声称证明启动阶段不会过热。限定现有证据范围，核对启动热量积累、初始条件及保护响应，选择最小瞬态分析或试验；证据不足不直接证明一定过热。
+- **正常动作的不安全组合**：设计要求人员进入检修区时设备不得启动，但门控制与设备启动分别按各自合法指令执行，两者间没有状态协调；假定无其他保护。指出设计不能保证整体安全约束，追踪控制与反馈并验证相应保护；增加相同设备副本不解决这个交互问题，也不能声称事故已经发生。
+- **简单任务的范围控制**：用户只要求评审离线计算工具的一处单位转换，有明确规格与示例，未发现动态、资源或安全问题。针对单位、转换和示例完成判断，保持只读；不启动七种方法、不要求仿真或完整需求矩阵，也不把局部通过写成整套工具已验证。
