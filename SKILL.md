@@ -2,7 +2,7 @@
 name: system-design-principles
 description: Design, review, and improve engineered systems by evaluating goals, boundaries, interfaces, failure behavior, lifecycle costs, and architectural tradeoffs. Use for 系统设计、系统设计评审、架构质量评审、系统改进方案, including software, hardware, and operational systems. Review is read-only unless changes are requested. Do not use for routine coding, ordinary debugging, UI-only reviews, or unresolved ownership and governance as the primary task.
 metadata:
-  version: "0.2.1"
+  version: "0.2.2"
 ---
 
 # 系统设计原则
@@ -32,7 +32,7 @@ metadata:
 从现有信息提取：
 
 - 对象与边界：评价哪个版本、子系统或接口，以及相关外部依赖。
-- 目的与场景：服务谁、完成什么工作、预期负载和环境。
+- 目的与场景：服务谁、完成什么工作，以及任务成立所需的关键环境、输入和能力边界；具体表达按 P01、P09、P12 核对。
 - 约束与优先级：不可违反的要求、需要权衡的质量目标、明确不做的事。
 - 当前证据：已观察的行为、设计意图、推断及尚未证实的假设。
 
@@ -50,6 +50,7 @@ metadata:
 | 复杂度高、变化牵连广、组合易出错 | P03 最小充分、P04 耦合、P05 接口、P06 可理解 |
 | 难以证明有效、故障难定位、行为失控 | P07 验证、P08 观察干预、P09 故障、P10 安全 |
 | 扩展困难、兼容负担、维护昂贵 | P11 演进、P12 容量、P13 维护、P14 生命周期 |
+| 工作环境、输入范围或能力边界不明，超限处置不明确 | P01 场景、P09 鲁棒性、P12 容量 |
 | 设计与实现不一致、同类问题反复发生、局部优化损害整体 | P14 生命周期、P15 反馈纠错 |
 | 部件正常而整体异常、反复过度调整、积累或时序改变行为 | P16 整体行为、P05 接口、P08 干预、P09 故障 |
 
